@@ -188,3 +188,30 @@ TEST(mpzTest, ModTest)
    // Mod by 0
    EXPECT_DEATH(mpz_class b = 5_mpz % 0_mpz, "");
 }
+
+//=======================================================================================
+// Arbitrary Precision Tests
+//=======================================================================================
+
+TEST(mpzTest, LongIntTest) 
+{  
+   // 65 bit int (too large for long)
+   mpz_class a = 0x10000000000000000_mpz;
+   mpz_class b("0x10000000000000000");
+   mpz_class c(std::string("0x10000000000000000"));
+}
+
+TEST(mpzTest, VeryLongIntTest) 
+{  
+   // 256-bit int
+   mpz_class a = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF_mpz;
+   EXPECT_EQ(a + a, 2*a);
+
+   // 512-bit int
+   mpz_class b = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF_mpz;
+   EXPECT_EQ(b + b, 2*b);
+
+   // 1024-bit int
+   mpz_class c = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF_mpz;
+   EXPECT_EQ(c + c, 2*c);
+}
