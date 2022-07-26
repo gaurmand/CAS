@@ -1,13 +1,13 @@
 add_executable(
-   tst
-   test.cpp
+   mpz_test
+   mpz_test.cpp
 )
 
 target_link_libraries(
-   tst
+   mpz_test
    GTest::gtest_main
    gmp
    gmpxx
 )
 
-gtest_discover_tests(tst)
+gtest_discover_tests(mpz_test)

@@ -1,5 +1,7 @@
-# CmMke build dir
+# ignored dirs
 build/*
+.vscode/*
 
 # scons
 .sconsign.dblite
+

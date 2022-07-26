@@ -17,7 +17,7 @@ build()
 test()
 {
    echo "Running tests"
-   ./$TEST_DIR/tst
+   ./$TEST_DIR/mpz_test
 }
 
 test2()
