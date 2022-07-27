@@ -1,5 +1,6 @@
 #include "ring.h"
 #include <gmpxx.h>
+#include <string>
 
 // Private class intended only for use with Ring<T>
 class IntegerElement
@@ -9,7 +10,9 @@ public:
    IntegerElement() = default;
    IntegerElement(const IntegerElement&) = default;
    IntegerElement(const long val): int_(val) {}
-   IntegerElement(const mpz_class& mpz_val): int_(mpz_val) {}
+
+   // IntegerElement(const std::string& str): int_(str) {}
+   // IntegerElement(const char* str): int_(str) {}
 
    //=============================================================================
    IntegerElement& operator+=(const IntegerElement&);
@@ -33,6 +36,9 @@ public:
    static IntegerElement unity() { return 1; }
 
 private:
+   //=============================================================================
+   IntegerElement(const mpz_class& mpz_val): int_(mpz_val) {}
+
    //=============================================================================
    mpz_class int_ = 0_mpz;
 };
