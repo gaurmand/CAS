@@ -4,20 +4,18 @@ TEST_DIR=build/tests
 
 generate()
 {
-   echo "Generating CMake files"
    cmake -S . -B $BUILD_DIR
 }
 
 build()
 {
-   echo "Building project"
 	cmake --build $BUILD_DIR
 }
 
 test()
 {
-   echo "Running tests"
    ./$TEST_DIR/mpz_test
+   ./$TEST_DIR/integer_test
 }
 
 test2()

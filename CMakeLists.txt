@@ -17,4 +17,5 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 include(GoogleTest)
+add_subdirectory(math)
 add_subdirectory(tests)
