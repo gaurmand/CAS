@@ -5,4 +5,6 @@ ADD_LIBRARY(
 
 target_link_libraries(
    integer
+   gmp
+   gmpxx
 )

@@ -5,5 +5,5 @@
 TEST(integerTest, DefaultConstructor) 
 {
    Integer a;
-   SUCCEED();
+   EXPECT_TRUE(a.isZero());
 }
