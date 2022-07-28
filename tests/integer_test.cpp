@@ -179,14 +179,4 @@ TEST(integerTest, Unity)
    EXPECT_EQ(Integer(1), Integer::unity());
    EXPECT_TRUE(Integer::unity().isUnity());
    EXPECT_FALSE(Integer::zero().isUnity());
-
-   double x = 0;
-   mpz_class a(x);
-
-   // mpz_class(0);
-   // mpz_class(0l);
-   // mpz_class(0ul);
-   // mpz_class(1.0);
-   // mpz_class(1.0l);
-   // mpz_class("123");
 }
