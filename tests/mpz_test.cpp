@@ -164,9 +164,6 @@ TEST(mpzTest, DivisionTest)
    // Round towards 0
    EXPECT_EQ(5_mpz / 3_mpz, 1_mpz);
    EXPECT_EQ(5_mpz / -3_mpz, -1_mpz);
-
-   // Division by 0
-   EXPECT_DEATH(mpz_class b = 5_mpz / 0_mpz, "");
 }
 
 TEST(mpzTest, ModTest) 
@@ -183,6 +180,12 @@ TEST(mpzTest, ModTest)
    EXPECT_EQ(5_mpz % -3_mpz, 2_mpz);
    EXPECT_EQ(-5_mpz % 3_mpz, -2_mpz);
    EXPECT_EQ(-5_mpz % -3_mpz, -2_mpz);
+}
+
+TEST(mpzTest, DivBy0) 
+{  
+   // Division by 0
+   EXPECT_DEATH(mpz_class b = 5_mpz / 0_mpz, "");
 
    // Mod by 0
    EXPECT_DEATH(mpz_class b = 5_mpz % 0_mpz, "");
