@@ -1,46 +1,47 @@
-#include "ring.h"
 #include <gmpxx.h>
 #include <string>
 
-// Private class intended only for use with Ring<T>
-class IntegerElement
+class Integer
 {
 public:
    //=============================================================================
-   IntegerElement() = default;
-   IntegerElement(const IntegerElement&) = default;
-   IntegerElement(const long val): int_(val) {}
+   Integer() = default;
 
-   // IntegerElement(const std::string& str): int_(str) {}
-   // IntegerElement(const char* str): int_(str) {}
+   // Problem?: Allows implicit narrowing conversions from unsigned long, long long, 
+   // unsigned long long, float, double, long double
+   Integer(const long val): int_(val) {}
+   
+   //=============================================================================
+   Integer& operator+=(const Integer&);
+   Integer operator+(const Integer& rhs) const { return Integer(int_) += rhs; }
 
    //=============================================================================
-   IntegerElement& operator+=(const IntegerElement&);
+   Integer operator-() const { return Integer(-int_); }
 
    //=============================================================================
-   IntegerElement operator-() const;
+   Integer& operator-=(const Integer&);
+   Integer operator-(const Integer& rhs) const { return Integer(int_) -= rhs; }
 
    //=============================================================================
-   IntegerElement& operator-=(const IntegerElement&);
+   Integer& operator*=(const Integer&);
+   Integer operator*(const Integer& rhs) const { return Integer(int_) *= rhs; }
 
    //=============================================================================
-   IntegerElement& operator*=(const IntegerElement&);
+   bool operator==(const Integer& rhs) const { return int_ == rhs.int_; };
+   bool operator!=(const Integer& rhs) const { return !(int_ == rhs.int_); };
 
    //=============================================================================
-   bool operator==(const IntegerElement& rhs) const { return int_ == rhs.int_; };
+   static Integer zero() { return 0; }
+   bool isZero() const { return int_ == 0; }
 
    //=============================================================================
-   static IntegerElement zero() { return 0; }
-
-   //=============================================================================
-   static IntegerElement unity() { return 1; }
+   static Integer unity() { return 1; }
+   bool isUnity() const { return int_ == 1; }
 
 private:
    //=============================================================================
-   IntegerElement(const mpz_class& mpz_val): int_(mpz_val) {}
+   explicit Integer(const mpz_class& val): int_(val) {}
 
    //=============================================================================
    mpz_class int_ = 0_mpz;
 };
-
-using Integer = Ring<IntegerElement>;
