@@ -7,10 +7,29 @@ public:
    //=============================================================================
    Integer() = default;
 
-   // Problem?: Allows implicit narrowing conversions from unsigned long, long long, 
-   // unsigned long long, float, double, long double
-   Integer(const long val): int_(val) {}
-   
+   //=============================================================================
+   Integer(const signed char val): int_(val) {}
+   Integer(const signed short val): int_(val) {}
+   Integer(const signed int val): int_(val) {}
+   Integer(const signed long val): int_(val) {}
+   Integer(const unsigned char val): int_(val) {}
+   Integer(const unsigned short val): int_(val) {}
+   Integer(const unsigned int val): int_(val) {}
+   Integer(const unsigned long val): int_(val) {}
+
+   // Disable implicit conversions from mpz_class unsupported types
+   Integer(const signed long long) = delete;
+   Integer(const unsigned long long) = delete;
+
+   // Disable narrowing implicit conversions
+   Integer(const float) = delete;
+   Integer(const double) = delete;
+   Integer(const long double) = delete;
+
+   //=============================================================================
+   explicit Integer(const char* str, const int base = 0): int_(str, base) {}
+   explicit Integer(const std::string& str, const int base = 0): int_(str, base) {}
+
    //=============================================================================
    Integer& operator+=(const Integer&);
    Integer operator+(const Integer& rhs) const { return Integer(int_) += rhs; }
