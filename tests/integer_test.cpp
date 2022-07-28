@@ -2,14 +2,6 @@
 #include "../math/integer.h"
 
 //=======================================================================================
-template <typename T>
-inline void test_construct()
-{
-   const T v = 0;
-   EXPECT_EQ(Integer(v), Integer::zero());
-}
-
-//=======================================================================================
 TEST(integerTest, DefaultConstructor) 
 {
    EXPECT_EQ(Integer(), Integer::zero());
@@ -18,26 +10,132 @@ TEST(integerTest, DefaultConstructor)
 //=======================================================================================
 TEST(integerTest, IntConstructor) 
 {
-   test_construct<char>();
-   test_construct<short>();
-   test_construct<int>();
-   test_construct<long>();
-
-   test_construct<unsigned char>();
-   test_construct<unsigned short>();
-   test_construct<unsigned int>();
-   test_construct<unsigned long>();
-
-   // // TODO: Disable construction from long long due to possible narrowing
-   test_construct<long long>();
-   test_construct<unsigned long long>();
+   EXPECT_EQ(Integer(0), Integer::zero());
+   EXPECT_EQ(Integer(0u), Integer::zero());
+   EXPECT_EQ(Integer(0l), Integer::zero());
+   EXPECT_EQ(Integer(0ul), Integer::zero());
 }
 
 //=======================================================================================
-TEST(integerTest, FloatConstructor) 
+TEST(integerTest, Addition) 
 {
-   // TODO: Disable construction from floating point types
-   test_construct<float>();
-   test_construct<double>();
-   test_construct<long double>();
+   // O + 0
+   EXPECT_EQ(Integer(0) + Integer(0), Integer::zero());
+
+   // 0 + P
+   EXPECT_EQ(Integer(0) + Integer(10), Integer(10));
+   EXPECT_EQ(Integer(10) + Integer(0), Integer(10));
+
+   // 0 + N
+   EXPECT_EQ(Integer(0) + Integer(-10), Integer(-10));
+   EXPECT_EQ(Integer(-10) + Integer(0), Integer(-10));
+
+   // P + P
+   EXPECT_EQ(Integer(20) + Integer(10), Integer(30));
+   EXPECT_EQ(Integer(10) + Integer(20), Integer(30));
+
+   // N + N
+   EXPECT_EQ(Integer(-20) + Integer(-10), Integer(-30));
+   EXPECT_EQ(Integer(-10) + Integer(-20), Integer(-30));
+
+   // P + N
+   EXPECT_EQ(Integer(20) + Integer(-10), Integer(10));
+   EXPECT_EQ(Integer(-10) + Integer(20), Integer(10));
+
+   // P + N = 0
+   EXPECT_EQ(Integer(10) + Integer(-10), Integer::zero());
+   EXPECT_EQ(Integer(-10) + Integer(10), Integer::zero());
+}
+
+//=======================================================================================
+TEST(integerTest, Negation) 
+{  
+   // - 0
+   EXPECT_EQ(-Integer(0), Integer::zero());
+
+   // - P
+   EXPECT_EQ(-Integer(10), Integer(-10));
+
+   // - N
+   EXPECT_EQ(-Integer(-10), Integer(10));
+
+   // -(-P) = P
+   EXPECT_EQ(-(-Integer(10)), Integer(10));
+
+   // -(-N) = N
+   EXPECT_EQ(-(-Integer(-10)), Integer(-10));
+}
+
+//=======================================================================================
+TEST(integerTest, Subtraction) 
+{
+   // O - 0
+   EXPECT_EQ(Integer(0) - Integer(0), Integer::zero());
+
+   // 0 - P / P - 0
+   EXPECT_EQ(Integer(0) - Integer(10), Integer(-10));
+   EXPECT_EQ(Integer(10) - Integer(0), Integer(10));
+
+   // 0 - N / N - 0
+   EXPECT_EQ(Integer(0) - Integer(-10), Integer(10));
+   EXPECT_EQ(Integer(-10) - Integer(0), Integer(-10));
+
+   // P - P
+   EXPECT_EQ(Integer(20) - Integer(10), Integer(10));
+   EXPECT_EQ(Integer(10) - Integer(20), Integer(-10));
+
+   // N - N
+   EXPECT_EQ(Integer(-20) - Integer(-10), Integer(-10));
+   EXPECT_EQ(Integer(-10) - Integer(-20), Integer(10));
+
+   // P - N / N - P
+   EXPECT_EQ(Integer(20) - Integer(-10), Integer(30));
+   EXPECT_EQ(Integer(-10) - Integer(20), Integer(-30));
+
+   // P - P = 0 / N - N = 0
+   EXPECT_EQ(Integer(10) - Integer(10), Integer::zero());
+   EXPECT_EQ(Integer(-10) - Integer(-10), Integer::zero());
+}
+
+//=======================================================================================
+TEST(integerTest, Multiplication) 
+{
+   // O * 0
+   EXPECT_EQ(Integer(0) * Integer(0), Integer::zero());
+
+   // 0 * P / P * 0
+   EXPECT_EQ(Integer(0) * Integer(10), Integer::zero());
+   EXPECT_EQ(Integer(10) * Integer(0), Integer::zero());
+
+   // 0 * N / N * 0
+   EXPECT_EQ(Integer(0) * Integer(-10), Integer::zero());
+   EXPECT_EQ(Integer(-10) * Integer(0), Integer::zero());
+
+   // P * P
+   EXPECT_EQ(Integer(20) * Integer(10), Integer(200));
+   EXPECT_EQ(Integer(10) * Integer(20), Integer(200));
+
+   // N * N
+   EXPECT_EQ(Integer(-20) * Integer(-10), Integer(200));
+   EXPECT_EQ(Integer(-10) * Integer(-20), Integer(200));
+
+   // P * N / N * P
+   EXPECT_EQ(Integer(20) * Integer(-10), Integer(-200));
+   EXPECT_EQ(Integer(-10) * Integer(20), Integer(-200));
+}
+
+//=======================================================================================
+TEST(integerTest, Zero) 
+{
+   EXPECT_EQ(Integer(0), Integer::zero());
+   EXPECT_TRUE(Integer::zero().isZero());
+   EXPECT_FALSE(Integer::unity().isZero());
+}
+
+//=======================================================================================
+TEST(integerTest, Unity) 
+{
+   EXPECT_EQ(Integer(1), Integer::unity());
+   EXPECT_TRUE(Integer::unity().isUnity());
+   EXPECT_FALSE(Integer::zero().isUnity());
 }
