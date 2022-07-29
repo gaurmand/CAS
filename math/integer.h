@@ -49,6 +49,11 @@ public:
    Integer operator*(const Integer& rhs) const { return Integer(*this) *= rhs; }
 
    //=============================================================================
+   Integer quotient(const Integer&) const;
+   Integer remainder(const Integer&) const;
+   void quorem(const Integer&, Integer&, Integer&) const;
+
+   //=============================================================================
    bool operator==(const Integer& rhs) const { return int_ == rhs.int_; };
    bool operator!=(const Integer& rhs) const { return !(*this == rhs); };
 

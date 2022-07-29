@@ -172,6 +172,83 @@ TEST(integerTest, Multiplication)
 }
 
 //=============================================================================
+TEST(integerTest, DivisionQuotient) 
+{
+   // O / X
+   EXPECT_EQ(Integer(0).quotient(1), Integer::zero());
+
+   // P / P
+   EXPECT_EQ(Integer(10).quotient(5), Integer(2));
+   EXPECT_EQ(Integer(10).quotient(4), Integer(2));
+   EXPECT_EQ(Integer(10).quotient(15), Integer(0));
+
+   // N / N
+   EXPECT_EQ(Integer(-10).quotient(-5), Integer(2));
+   EXPECT_EQ(Integer(-10).quotient(-4), Integer(2));
+   EXPECT_EQ(Integer(-10).quotient(-15), Integer(0));
+
+   // P / N
+   EXPECT_EQ(Integer(10).quotient(-5), Integer(-2));
+   EXPECT_EQ(Integer(10).quotient(-4), Integer(-2));
+   EXPECT_EQ(Integer(10).quotient(-15), Integer(0));
+
+   // N / P
+   EXPECT_EQ(Integer(-10).quotient(5), Integer(-2));
+   EXPECT_EQ(Integer(-10).quotient(4), Integer(-2));
+   EXPECT_EQ(Integer(-10).quotient(15), Integer(0));
+
+   // X / 0
+   EXPECT_THROW(Integer(1).quotient(0), std::domain_error);
+}
+
+//=============================================================================
+TEST(integerTest, DivisionRemainder) 
+{
+   // O / X
+   EXPECT_EQ(Integer(0).remainder(1), Integer::zero());
+
+   // P / P
+   EXPECT_EQ(Integer(10).remainder(5), Integer::zero());
+   EXPECT_EQ(Integer(10).remainder(4), Integer(2));
+   EXPECT_EQ(Integer(10).remainder(15), Integer(10));
+
+   // N / N
+   EXPECT_EQ(Integer(-10).remainder(-5), Integer::zero());
+   EXPECT_EQ(Integer(-10).remainder(-4), Integer(-2));
+   EXPECT_EQ(Integer(-10).remainder(-15), Integer(-10));
+
+   // P / N
+   EXPECT_EQ(Integer(10).remainder(-5), Integer::zero());
+   EXPECT_EQ(Integer(10).remainder(-4), Integer(2));
+   EXPECT_EQ(Integer(10).remainder(-15), Integer(10));
+
+   // N / P
+   EXPECT_EQ(Integer(-10).remainder(5), Integer::zero());
+   EXPECT_EQ(Integer(-10).remainder(4), Integer(-2));
+   EXPECT_EQ(Integer(-10).remainder(15), Integer(-10));
+
+   // X / 0
+   EXPECT_THROW(Integer(1).remainder(0), std::domain_error);
+}
+
+//=============================================================================
+TEST(integerTest, DivisionQuorem) 
+{
+   Integer q;
+   Integer r;
+   Integer(10).quorem(-5, q, r);
+   EXPECT_EQ(q, Integer(-2));
+   EXPECT_EQ(r, Integer(0));
+
+   Integer(-10).quorem(15, q, r);
+   EXPECT_EQ(q, Integer(0));
+   EXPECT_EQ(r, Integer(-10));
+
+   EXPECT_THROW(Integer(1).quorem(0, q, r), std::domain_error);
+}
+
+
+//=============================================================================
 TEST(integerTest, Zero) 
 {
    EXPECT_EQ(Integer(0), Integer::zero());
