@@ -16,18 +16,36 @@ public:
    QuadraticInteger(const Integer& a, const Integer& b = 0): a_(a), b_(b) {}
 
    //=============================================================================
-   QuadraticInteger& operator+=(const QuadraticInteger&);
+   QuadraticInteger& operator+=(const QuadraticInteger& rhs)
+   {
+      a_ += rhs.a_;
+      b_ += rhs.b_;
+      return *this;
+   }
    QuadraticInteger operator+(const QuadraticInteger& rhs) const { return QuadraticInteger(*this) += rhs;}
 
    //=============================================================================
    QuadraticInteger operator-() const { return QuadraticInteger(-a_, -b_); }
 
    //=============================================================================
-   QuadraticInteger& operator-=(const QuadraticInteger&);
+   QuadraticInteger& operator-=(const QuadraticInteger& rhs)
+   {
+      a_ -= rhs.a_;
+      b_ -= rhs.b_;
+      return *this;
+   }
    QuadraticInteger operator-(const QuadraticInteger& rhs) const { return QuadraticInteger(*this) -= rhs;}
 
    //=============================================================================
-   QuadraticInteger& operator*=(const QuadraticInteger&);
+   QuadraticInteger& operator*=(const QuadraticInteger& rhs)
+   {
+      a_ *= rhs.a_;
+      a_ += b_ * rhs.b_ * N;
+      b_ *= rhs.b_;
+      b_ += b_ * rhs.a_;
+      return *this;
+   }
+
    QuadraticInteger operator*(const QuadraticInteger& rhs) const { return QuadraticInteger(*this) *= rhs;}
 
    //=============================================================================
@@ -46,8 +64,16 @@ public:
    QuadraticInteger conjugate() const { return QuadraticInteger(a_, -b_); }
 
    //=============================================================================
-   QuadraticInteger isInteger() const { return b_ == 0; }
-   Integer toInteger() const;
+   bool isInteger() const { return b_ == 0; }
+   Integer toInteger() const
+   {
+      if (!isInteger())
+      {
+         throw std::runtime_error("Cannot convert QuadraticInteger to Integer");
+      }
+      
+      return a_;
+   }
 
    //=============================================================================
    Integer a() { return a_; }
@@ -59,7 +85,7 @@ private:
    Integer b_ = 0;
 };
 
+template class QuadraticInteger<-1>;
 using GaussianInteger = QuadraticInteger<-1>;
-using Root2Integer = QuadraticInteger<2>;
 
 #endif
