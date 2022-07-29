@@ -3,11 +3,6 @@ add_executable(
    mpz_test.cpp
 )
 
-add_executable(
-   integer_test
-   integer_test.cpp
-)
-
 target_link_libraries(
    mpz_test
    GTest::gtest_main
@@ -15,11 +10,17 @@ target_link_libraries(
    gmpxx
 )
 
+add_executable(
+   math_test
+   integer_test.cpp
+   quadratic_integer_test.cpp
+)
+
 target_link_libraries(
-   integer_test
+   math_test
    GTest::gtest_main
-   integer
+   "math"
 )
 
 gtest_discover_tests(mpz_test)
-gtest_discover_tests(integer_test)
+gtest_discover_tests(math_test)

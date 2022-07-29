@@ -1,10 +1,11 @@
 ADD_LIBRARY( 
-   integer STATIC
+   "math" STATIC
    integer.cpp 
+   quadratic_integer.cpp 
 )
 
 target_link_libraries(
-   integer
+   "math"
    gmp
    gmpxx
 )

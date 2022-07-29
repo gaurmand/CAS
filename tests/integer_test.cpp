@@ -1,13 +1,13 @@
 #include <gtest/gtest.h>
 #include "../math/integer.h"
 
-//=======================================================================================
+//=============================================================================
 TEST(integerTest, DefaultConstructor) 
 {
    EXPECT_EQ(Integer(), Integer::zero());
 }
 
-//=======================================================================================
+//=============================================================================
 TEST(integerTest, NumericConstructors) 
 {  
    EXPECT_EQ(Integer((char)0), Integer::zero());
@@ -28,7 +28,7 @@ TEST(integerTest, NumericConstructors)
    // EXPECT_EQ(Integer((long double)0), Integer::zero());
 }
 
-//=======================================================================================
+//=============================================================================
 TEST(integerTest, StringConstructors) 
 {  
    // Decimal
@@ -57,7 +57,7 @@ TEST(integerTest, StringConstructors)
    EXPECT_EQ(Integer("H31", 62), Integer(65535));
 }
 
-//=======================================================================================
+//=============================================================================
 TEST(integerTest, Addition) 
 {
    // O + 0
@@ -88,7 +88,7 @@ TEST(integerTest, Addition)
    EXPECT_EQ(Integer(-10) + Integer(10), Integer::zero());
 }
 
-//=======================================================================================
+//=============================================================================
 TEST(integerTest, Negation) 
 {  
    // - 0
@@ -107,7 +107,7 @@ TEST(integerTest, Negation)
    EXPECT_EQ(-(-Integer(-10)), Integer(-10));
 }
 
-//=======================================================================================
+//=============================================================================
 TEST(integerTest, Subtraction) 
 {
    // O - 0
@@ -138,17 +138,17 @@ TEST(integerTest, Subtraction)
    EXPECT_EQ(Integer(-10) - Integer(-10), Integer::zero());
 }
 
-//=======================================================================================
+//=============================================================================
 TEST(integerTest, Multiplication) 
 {
    // O * 0
    EXPECT_EQ(Integer(0) * Integer(0), Integer::zero());
 
-   // 0 * P / P * 0
+   // 0 * P
    EXPECT_EQ(Integer(0) * Integer(10), Integer::zero());
    EXPECT_EQ(Integer(10) * Integer(0), Integer::zero());
 
-   // 0 * N / N * 0
+   // 0 * N
    EXPECT_EQ(Integer(0) * Integer(-10), Integer::zero());
    EXPECT_EQ(Integer(-10) * Integer(0), Integer::zero());
 
@@ -160,12 +160,12 @@ TEST(integerTest, Multiplication)
    EXPECT_EQ(Integer(-20) * Integer(-10), Integer(200));
    EXPECT_EQ(Integer(-10) * Integer(-20), Integer(200));
 
-   // P * N / N * P
+   // P * N
    EXPECT_EQ(Integer(20) * Integer(-10), Integer(-200));
    EXPECT_EQ(Integer(-10) * Integer(20), Integer(-200));
 }
 
-//=======================================================================================
+//=============================================================================
 TEST(integerTest, Zero) 
 {
    EXPECT_EQ(Integer(0), Integer::zero());
@@ -173,7 +173,7 @@ TEST(integerTest, Zero)
    EXPECT_FALSE(Integer::unity().isZero());
 }
 
-//=======================================================================================
+//=============================================================================
 TEST(integerTest, Unity) 
 {
    EXPECT_EQ(Integer(1), Integer::unity());

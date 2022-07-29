@@ -15,7 +15,7 @@ build()
 test()
 {
    ./$TEST_DIR/mpz_test
-   ./$TEST_DIR/integer_test
+   ./$TEST_DIR/math_test
 }
 
 test2()

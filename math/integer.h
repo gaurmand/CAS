@@ -1,3 +1,6 @@
+#ifndef CAS_INTEGER_H
+#define CAS_INTEGER_H
+
 #include <gmpxx.h>
 #include <string>
 
@@ -64,3 +67,5 @@ private:
    //=============================================================================
    mpz_class int_ = 0_mpz;
 };
+
+#endif
