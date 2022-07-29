@@ -13,7 +13,7 @@ class QuadraticInteger
 public:
    //=============================================================================
    QuadraticInteger() = default;
-   QuadraticInteger(const Integer& a, const Integer& b): a_(a), b_(b) {}
+   QuadraticInteger(const Integer& a, const Integer& b = 0): a_(a), b_(b) {}
 
    //=============================================================================
    QuadraticInteger& operator+=(const QuadraticInteger&);
