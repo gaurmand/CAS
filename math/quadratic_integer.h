@@ -17,18 +17,18 @@ public:
 
    //=============================================================================
    QuadraticInteger& operator+=(const QuadraticInteger&);
-   QuadraticInteger operator+(const QuadraticInteger& rhs) { return QuadraticInteger(*this) += rhs;}
+   QuadraticInteger operator+(const QuadraticInteger& rhs) const { return QuadraticInteger(*this) += rhs;}
 
    //=============================================================================
-   QuadraticInteger operator-() { return QuadraticInteger(-a_, -b_); }
+   QuadraticInteger operator-() const { return QuadraticInteger(-a_, -b_); }
 
    //=============================================================================
    QuadraticInteger& operator-=(const QuadraticInteger&);
-   QuadraticInteger operator-(const QuadraticInteger& rhs) { return QuadraticInteger(*this) -= rhs;}
+   QuadraticInteger operator-(const QuadraticInteger& rhs) const { return QuadraticInteger(*this) -= rhs;}
 
    //=============================================================================
    QuadraticInteger& operator*=(const QuadraticInteger&);
-   QuadraticInteger operator*(const QuadraticInteger& rhs) { return QuadraticInteger(*this) *= rhs;}
+   QuadraticInteger operator*(const QuadraticInteger& rhs) const { return QuadraticInteger(*this) *= rhs;}
 
    //=============================================================================
    bool operator==(const QuadraticInteger& rhs) const { return a_ == rhs.a_ && b_ == rhs.b_; };
@@ -43,7 +43,7 @@ public:
    bool isUnity() const { return a_ == 1 && b_ == 0; }
 
    //=============================================================================
-   QuadraticInteger conjugate() { return QuadraticInteger(a_, -b_); }
+   QuadraticInteger conjugate() const { return QuadraticInteger(a_, -b_); }
 
    //=============================================================================
    QuadraticInteger isInteger() const { return b_ == 0; }
