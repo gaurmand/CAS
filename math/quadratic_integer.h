@@ -46,6 +46,10 @@ public:
    QuadraticInteger conjugate() { return QuadraticInteger(a_, -b_); }
 
    //=============================================================================
+   QuadraticInteger isInteger() const { return b_ == 0; }
+   Integer toInteger() const;
+
+   //=============================================================================
    Integer a() { return a_; }
    Integer b() { return b_; }
 

@@ -28,3 +28,15 @@ QuadraticInteger<N>& QuadraticInteger<N>::operator*=(const QuadraticInteger<N>& 
    b_ += b_ * rhs.a_;
    return *this;
 }
+
+//=============================================================================
+template <long N> 
+Integer QuadraticInteger<N>::toInteger() const
+{
+   if (!isInteger())
+   {
+      throw std::runtime_error("Cannot convert QuadraticInteger to Integer");
+   }
+   
+   return a_;
+}
