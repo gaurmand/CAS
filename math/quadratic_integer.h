@@ -39,13 +39,13 @@ public:
    //=============================================================================
    QuadraticInteger& operator*=(const QuadraticInteger& rhs)
    {
+      const Integer t = a_;
       a_ *= rhs.a_;
       a_ += b_ * rhs.b_ * N;
-      b_ *= rhs.b_;
-      b_ += b_ * rhs.a_;
+      b_ *= rhs.a_;
+      b_ += t * rhs.b_;
       return *this;
    }
-
    QuadraticInteger operator*(const QuadraticInteger& rhs) const { return QuadraticInteger(*this) *= rhs;}
 
    //=============================================================================
@@ -76,14 +76,20 @@ public:
    }
 
    //=============================================================================
-   Integer a() { return a_; }
-   Integer b() { return b_; }
+   Integer a() const { return a_; }
+   Integer b() const { return b_; }
 
 private:
    //=============================================================================
    Integer a_ = 0;
    Integer b_ = 0;
 };
+
+template <long N> 
+std::ostream& operator<<(std::ostream& os, const QuadraticInteger<N> qint)
+{
+   return os << qint.a() << " + " << qint.b() << "*sqrt(" << N << ")";
+}
 
 template class QuadraticInteger<-1>;
 using GaussianInteger = QuadraticInteger<-1>;

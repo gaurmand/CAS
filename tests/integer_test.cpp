@@ -105,6 +105,12 @@ TEST(integerTest, Negation)
 
    // -(-N) = N
    EXPECT_EQ(-(-Integer(-10)), Integer(-10));
+
+   // P + (-P) = 0
+   EXPECT_EQ(Integer(10) + (-Integer(10)), Integer::zero());
+   
+   // N + (-N) = 0
+   EXPECT_EQ(Integer(-10) + (-Integer(-10)), Integer::zero());
 }
 
 //=============================================================================
@@ -179,4 +185,8 @@ TEST(integerTest, Unity)
    EXPECT_EQ(Integer(1), Integer::unity());
    EXPECT_TRUE(Integer::unity().isUnity());
    EXPECT_FALSE(Integer::zero().isUnity());
+
+   // X * 1 = X
+   EXPECT_EQ(Integer(5) * Integer::unity(), Integer(5));
+   EXPECT_EQ(Integer::unity() * Integer(5), Integer(5));
 }

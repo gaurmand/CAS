@@ -60,6 +60,9 @@ public:
    static Integer unity() { return 1; }
    bool isUnity() const { return int_ == 1; }
 
+   //=============================================================================
+   friend std::ostream& operator<<(std::ostream&, const Integer&);
+
 private:
    //=============================================================================
    explicit Integer(const mpz_class& val): int_(val) {}
