@@ -35,22 +35,22 @@ public:
 
    //=============================================================================
    Integer& operator+=(const Integer&);
-   Integer operator+(const Integer& rhs) const { return Integer(int_) += rhs; }
+   Integer operator+(const Integer& rhs) const { return Integer(*this) += rhs; }
 
    //=============================================================================
    Integer operator-() const { return Integer(-int_); }
 
    //=============================================================================
    Integer& operator-=(const Integer&);
-   Integer operator-(const Integer& rhs) const { return Integer(int_) -= rhs; }
+   Integer operator-(const Integer& rhs) const { return Integer(*this) -= rhs; }
 
    //=============================================================================
    Integer& operator*=(const Integer&);
-   Integer operator*(const Integer& rhs) const { return Integer(int_) *= rhs; }
+   Integer operator*(const Integer& rhs) const { return Integer(*this) *= rhs; }
 
    //=============================================================================
    bool operator==(const Integer& rhs) const { return int_ == rhs.int_; };
-   bool operator!=(const Integer& rhs) const { return !(int_ == rhs.int_); };
+   bool operator!=(const Integer& rhs) const { return !(*this == rhs); };
 
    //=============================================================================
    static Integer zero() { return 0; }
