@@ -49,6 +49,7 @@ public:
    Integer operator*(const Integer& rhs) const { return Integer(*this) *= rhs; }
 
    //=============================================================================
+   // Euclidean division: n = q*d + r where 0 <= r < abs(d)
    Integer quotient(const Integer&) const;
    Integer remainder(const Integer&) const;
    void quorem(const Integer&, Integer&, Integer&) const;
