@@ -15,6 +15,7 @@ add_executable(
    integer_test.cpp
    quadratic_integer_test.cpp
    integer_mod_test.cpp
+   rational_test.cpp
 )
 
 target_link_libraries(

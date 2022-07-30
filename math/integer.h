@@ -7,6 +7,8 @@
 namespace CAS
 {
 
+class GMPRational;
+
 class Integer
 {
 public:
@@ -76,7 +78,8 @@ public:
 
    //=============================================================================
    friend std::ostream& operator<<(std::ostream&, const Integer&);
-
+   friend class GMPRational;
+   
 private:
    //=============================================================================
    explicit Integer(const mpz_class& val): int_(val) {}

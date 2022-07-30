@@ -1,3 +1,6 @@
+#ifndef CAS_INTEGER_MOD_H
+#define CAS_INTEGER_MOD_H
+
 #include "integer.h"
 
 namespace CAS
@@ -72,3 +75,5 @@ private:
 };
 
 } // namespace CAS
+
+#endif
