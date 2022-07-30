@@ -89,7 +89,7 @@ private:
 };
 
 template <long N> 
-std::ostream& operator<<(std::ostream& os, const QuadraticInteger<N> qint)
+std::ostream& operator<<(std::ostream& os, const QuadraticInteger<N>& qint)
 {
    return os << qint.a() << " + " << qint.b() << "*sqrt(" << N << ")";
 }
