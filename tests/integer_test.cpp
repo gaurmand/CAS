@@ -57,6 +57,10 @@ TEST(integerTest, StringConstructors)
 
    // Base 62 (max base)
    EXPECT_EQ(Integer("H31", 62), Integer(65535));
+
+   // std::string
+   EXPECT_EQ(Integer(std::string("0b1111111111111111")), Integer(65535));
+   EXPECT_EQ(Integer("FFFF", 16), Integer(0xFFFF));
 }
 
 //=============================================================================
