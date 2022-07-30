@@ -50,12 +50,15 @@ public:
    bool operator!=(const IntegerMod& rhs) const { return !(*this == rhs); };
 
    //=============================================================================
-   static IntegerMod zero() { return IntegerMod(); }
+   static IntegerMod zero() { return IntegerMod(0); }
    bool isZero() const { return int_ == 0; }
 
    //=============================================================================
-   static IntegerMod unity() { return IntegerMod(2); }
+   static IntegerMod unity() { return IntegerMod(1); }
    bool isUnity() const { return int_ == 1; }
+
+   //=============================================================================
+   Integer toInteger() const { return int_; }
 
    //=============================================================================
    friend std::ostream& operator<<(std::ostream& os, const IntegerMod& rhs)
