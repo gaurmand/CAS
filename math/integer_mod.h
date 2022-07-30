@@ -10,16 +10,13 @@ class IntegerMod
 public:
    //=============================================================================
    IntegerMod() = default;
-   IntegerMod(const Integer& val): int_(val) 
-   {
-      int_ = int_.remainder(N);
-   }
+   IntegerMod(const Integer& val): int_(val % N) {}
 
    //=============================================================================
    IntegerMod& operator+=(const IntegerMod& rhs)
    {
       int_ += rhs.int_;
-      int_ = int_.remainder(N);
+      int_ %= N;
       return *this;
    }
    IntegerMod operator+(const IntegerMod& rhs) const { return IntegerMod(*this) += rhs;}
@@ -34,7 +31,7 @@ public:
    IntegerMod& operator-=(const IntegerMod& rhs)
    {
       int_ -= rhs.int_;
-      int_ = int_.remainder(N);
+      int_ %= N;
       return *this;
    }
    IntegerMod operator-(const IntegerMod& rhs) const { return IntegerMod(*this) -= rhs;}
@@ -43,7 +40,7 @@ public:
    IntegerMod& operator*=(const IntegerMod& rhs)
    {
       int_ *= rhs.int_;
-      int_ = int_.remainder(N);
+      int_ %= N;
       return *this;
    }
    IntegerMod operator*(const IntegerMod& rhs) const { return IntegerMod(*this) *= rhs;}

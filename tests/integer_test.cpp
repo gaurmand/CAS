@@ -181,60 +181,60 @@ TEST(integerTest, Multiplication)
 TEST(integerTest, DivisionQuotient) 
 {
    // P / P
-   EXPECT_EQ(Integer(10).quotient(5), Integer(2));
-   EXPECT_EQ(Integer(7).quotient(3), Integer(2));
-   EXPECT_EQ(Integer(3).quotient(5), Integer(0));
+   EXPECT_EQ(Integer(10) / 5, Integer(2));
+   EXPECT_EQ(Integer(7) / 3, Integer(2));
+   EXPECT_EQ(Integer(3) / 5, Integer(0));
 
    // N / N
-   EXPECT_EQ(Integer(-10).quotient(-5), Integer(2));
-   EXPECT_EQ(Integer(-7).quotient(-3), Integer(3));
-   EXPECT_EQ(Integer(-3).quotient(-5), Integer(1));
+   EXPECT_EQ(Integer(-10) / -5, Integer(2));
+   EXPECT_EQ(Integer(-7) / -3, Integer(3));
+   EXPECT_EQ(Integer(-3) / -5, Integer(1));
 
    // P / N
-   EXPECT_EQ(Integer(10).quotient(-5), Integer(-2));
-   EXPECT_EQ(Integer(7).quotient(-3), Integer(-2));
-   EXPECT_EQ(Integer(3).quotient(-5), Integer(0));
+   EXPECT_EQ(Integer(10) / -5, Integer(-2));
+   EXPECT_EQ(Integer(7) / -3, Integer(-2));
+   EXPECT_EQ(Integer(3) / -5, Integer(0));
 
    // N / P
-   EXPECT_EQ(Integer(-10).quotient(5), Integer(-2));
-   EXPECT_EQ(Integer(-7).quotient(3), Integer(-3));
-   EXPECT_EQ(Integer(-3).quotient(5), Integer(-1));
+   EXPECT_EQ(Integer(-10) / 5, Integer(-2));
+   EXPECT_EQ(Integer(-7) / 3, Integer(-3));
+   EXPECT_EQ(Integer(-3) / 5, Integer(-1));
 
    // O / X
-   EXPECT_EQ(Integer(0).quotient(1), Integer::zero());
+   EXPECT_EQ(Integer(0) / 1, Integer::zero());
 
    // X / 0
-   EXPECT_THROW(Integer(1).quotient(0), std::domain_error);
+   EXPECT_THROW(Integer(1) / 0, std::domain_error);
 }
 
 //=============================================================================
 TEST(integerTest, DivisionRemainder) 
 {
    // P / P
-   EXPECT_EQ(Integer(10).remainder(5), Integer::zero());
-   EXPECT_EQ(Integer(7).remainder(3), Integer(1));
-   EXPECT_EQ(Integer(3).remainder(5), Integer(3));
+   EXPECT_EQ(Integer(10) % 5, Integer::zero());
+   EXPECT_EQ(Integer(7) % 3, Integer(1));
+   EXPECT_EQ(Integer(3) % 5, Integer(3));
 
    // N / N
-   EXPECT_EQ(Integer(-10).remainder(-5), Integer::zero());
-   EXPECT_EQ(Integer(-7).remainder(-3), Integer(2));
-   EXPECT_EQ(Integer(-3).remainder(-5), Integer(2));
+   EXPECT_EQ(Integer(-10) % -5, Integer::zero());
+   EXPECT_EQ(Integer(-7) % -3, Integer(2));
+   EXPECT_EQ(Integer(-3) % -5, Integer(2));
 
    // P / N
-   EXPECT_EQ(Integer(10).remainder(-5), Integer::zero());
-   EXPECT_EQ(Integer(7).remainder(-3), Integer(1));
-   EXPECT_EQ(Integer(3).remainder(-5), Integer(3));
+   EXPECT_EQ(Integer(10) % -5, Integer::zero());
+   EXPECT_EQ(Integer(7) % -3, Integer(1));
+   EXPECT_EQ(Integer(3) % -5, Integer(3));
 
    // N / P
-   EXPECT_EQ(Integer(-10).remainder(5), Integer::zero());
-   EXPECT_EQ(Integer(-7).remainder(3), Integer(2));
-   EXPECT_EQ(Integer(-3).remainder(5), Integer(2));
+   EXPECT_EQ(Integer(-10) % 5, Integer::zero());
+   EXPECT_EQ(Integer(-7) % 3, Integer(2));
+   EXPECT_EQ(Integer(-3) % 5, Integer(2));
 
    // O / X
-   EXPECT_EQ(Integer(0).remainder(1), Integer::zero());
+   EXPECT_EQ(Integer(0) % 1, Integer::zero());
 
    // X / 0
-   EXPECT_THROW(Integer(1).remainder(0), std::domain_error);
+   EXPECT_THROW(Integer(1) % 0, std::domain_error);
 }
 
 //=============================================================================

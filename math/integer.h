@@ -53,8 +53,13 @@ public:
 
    //=============================================================================
    // Euclidean division: n = q*d + r where 0 <= r < abs(d)
-   Integer quotient(const Integer&) const;
-   Integer remainder(const Integer&) const;
+   // NOTE: Computing r is aka "reduction modulo n"
+   Integer& operator%=(const Integer&);
+   Integer operator%(const Integer& rhs) const { return Integer(*this) %= rhs; };
+   Integer& operator/=(const Integer&);
+   Integer operator/(const Integer& rhs) const { return Integer(*this) /= rhs; };
+   
+   // Compute q & r simultaneously for efficiency
    void quorem(const Integer&, Integer&, Integer&) const;
 
    //=============================================================================
