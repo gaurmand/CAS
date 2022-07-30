@@ -1,6 +1,10 @@
 #include <gtest/gtest.h>
 #include "../math/quadratic_integer.h"
 
+using CAS::QuadraticInteger;
+using CAS::GaussianInteger;
+using CAS::Integer;
+
 //=============================================================================
 TEST(quadraticIntegerTest, DefaultConstructor) 
 {

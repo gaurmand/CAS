@@ -1,5 +1,8 @@
 #include "integer.h"
 
+namespace CAS
+{
+
 //=============================================================================
 Integer& Integer::operator+=(const Integer& rhs) 
 {
@@ -112,3 +115,5 @@ std::ostream& operator<<(std::ostream& os, const Integer& i)
 {
    return os << i.int_.get_str();
 }
+
+} // namespace CAS

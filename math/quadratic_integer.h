@@ -3,6 +3,9 @@
 
 #include "integer.h"
 
+namespace CAS
+{
+
 // Represents numbers of the form: a + b*sqrt(N)
 // NOTE: Technically this defines a quadratic extension of the integers, not a
 // ring of quadratic integers (they are similar concepts with key differences 
@@ -93,5 +96,7 @@ std::ostream& operator<<(std::ostream& os, const QuadraticInteger<N> qint)
 
 template class QuadraticInteger<-1>;
 using GaussianInteger = QuadraticInteger<-1>;
+
+} // namespace CAS
 
 #endif

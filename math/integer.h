@@ -4,6 +4,9 @@
 #include <gmpxx.h>
 #include <string>
 
+namespace CAS
+{
+
 class Integer
 {
 public:
@@ -76,5 +79,7 @@ private:
    //=============================================================================
    mpz_class int_ = 0_mpz;
 };
+
+} // namespace CAS
 
 #endif

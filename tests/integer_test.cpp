@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "../math/integer.h"
 
+using CAS::Integer;
+
 //=============================================================================
 TEST(integerTest, DefaultConstructor) 
 {
