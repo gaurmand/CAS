@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../math/quadratic_integer.h"
+#include "../math/ring/quadratic_integer.h"
 
 using CAS::QuadraticInteger;
 using CAS::GaussianInteger;

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "../math/gmp_rational.h"
-#include "../math/cas_rational.h"
+#include "../math/ring/gmp_rational.h"
+#include "../math/ring/cas_rational.h"
 
 using CAS::Rational;
 using CAS::Integer;
