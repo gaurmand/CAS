@@ -3,8 +3,12 @@
 namespace CAS
 {
 //=============================================================================
-GMPRational::GMPRational(const Integer& num, const Integer& den): rat_(num.int_, den.int_) 
+GMPRational::GMPRational(const Integer& num, const Integer& denom): rat_(num.int_, denom.int_) 
 {
+   if (denom.isZero())
+   {
+      throw std::domain_error("Rational cannot have denominator of 0");
+   }
    rat_.canonicalize();
 }
 

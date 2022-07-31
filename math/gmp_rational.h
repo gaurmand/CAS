@@ -12,8 +12,9 @@ class GMPRational
 public:
    //=============================================================================
    GMPRational() = default;
+   GMPRational(const long num): rat_(num, 1) {}
    GMPRational(const Integer& num): rat_(num.int_, 1) {}
-   GMPRational(const Integer&, const Integer&);
+   GMPRational(const Integer& num, const Integer& denom);
 
    //=============================================================================
    GMPRational& operator+=(const GMPRational&);
@@ -35,11 +36,11 @@ public:
    bool operator!=(const GMPRational& rhs) const { return !(*this == rhs); };
 
    //=============================================================================
-   static GMPRational zero() { return GMPRational(0_mpq); }
+   static GMPRational zero() { return GMPRational(0); }
    bool isZero() const { return rat_ == 0; }
 
    //=============================================================================
-   static GMPRational unity() { return GMPRational(1_mpq); }
+   static GMPRational unity() { return GMPRational(1); }
    bool isUnity() const { return rat_ == 1; }
 
    //=============================================================================
