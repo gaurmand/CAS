@@ -77,9 +77,13 @@ public:
    bool isUnity() const { return int_ == 1; }
 
    //=============================================================================
+   Integer gcd(const Integer& i) { return Integer(::gcd(int_, i.int_)); }
+
+   //=============================================================================
    friend std::ostream& operator<<(std::ostream&, const Integer&);
    friend class GMPRational;
-   
+   friend class CASRational;
+
 private:
    //=============================================================================
    explicit Integer(const mpz_class& val): int_(val) {}

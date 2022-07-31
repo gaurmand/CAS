@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
 #include "../math/gmp_rational.h"
+#include "../math/cas_rational.h"
 
-using Rational = CAS::GMPRational;
+using CAS::Rational;
 using CAS::Integer;
 
 //=============================================================================
@@ -14,6 +15,7 @@ TEST(rationalTest, DefaultConstructor)
 TEST(rationalTest, IntConstructor) 
 {
    EXPECT_EQ(Rational(0, 1), Rational::zero());
+   EXPECT_EQ(Rational(0, 5), Rational::zero());
    EXPECT_EQ(Rational(0), Rational::zero());
 
    EXPECT_EQ(Rational(5), Rational(5, 1));
