@@ -15,7 +15,8 @@ build()
 test()
 {
    ./$TEST_DIR/mpz_test
-   ./$TEST_DIR/math_test
+   ./$TEST_DIR/ring_test
+   ./$TEST_DIR/alg_test
 }
 
 test2()

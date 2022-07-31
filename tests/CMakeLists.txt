@@ -11,7 +11,7 @@ target_link_libraries(
 )
 
 add_executable(
-   math_test
+   ring_test
    integer_test.cpp
    quadratic_integer_test.cpp
    integer_mod_test.cpp
@@ -19,10 +19,23 @@ add_executable(
 )
 
 target_link_libraries(
-   math_test
+   ring_test
    GTest::gtest_main
    "math"
 )
 
+add_executable(
+   alg_test
+   abs_test.cpp
+)
+
+target_link_libraries(
+   alg_test
+   GTest::gtest_main
+   "math"
+)
+
+
 gtest_discover_tests(mpz_test)
-gtest_discover_tests(math_test)
+gtest_discover_tests(ring_test)
+gtest_discover_tests(alg_test)
