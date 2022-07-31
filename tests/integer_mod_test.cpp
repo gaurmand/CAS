@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../math/ring/integer_mod.h"
+#include "../math/ring.h"
 
 using CAS::IntegerMod;
 

@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
-#include "../math/ring/integer.h"
-#include "../math/ring/cas_rational.h"
-#include "../math/algorithm/common.h"
+#include "../math/ring.h"
+#include "../math/algorithm.h"
 
 using CAS::abs;
 using CAS::Integer;
