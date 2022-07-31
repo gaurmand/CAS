@@ -44,6 +44,18 @@ CASRational& CASRational::operator*=(const CASRational& rhs)
 }
 
 //=============================================================================
+bool CASRational::operator<=(const CASRational& rhs) const
+{
+   return (num_*rhs.denom_) <= (denom_*rhs.num_);
+}
+
+//=============================================================================
+bool CASRational::operator>=(const CASRational& rhs) const
+{
+   return (num_*rhs.denom_) >= (denom_*rhs.num_);
+}
+
+//=============================================================================
 std::ostream& operator<<(std::ostream& os, const CASRational& r)
 {
    return os << r.num_ << "/" << r.denom_;
@@ -71,7 +83,7 @@ void CASRational::canonicalize()
    }
 
    // Ensure denom is positive
-   if (denom_.int_ < 0)
+   if (denom_ < 0)
    {
       denom_ = -denom_;
       num_ = -num_;

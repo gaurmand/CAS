@@ -36,6 +36,12 @@ public:
    bool operator!=(const GMPRational& rhs) const { return !(*this == rhs); };
 
    //=============================================================================
+   bool operator<=(const GMPRational& rhs) const { return rat_ <= rhs.rat_; };
+   bool operator>=(const GMPRational& rhs) const { return rat_ >= rhs.rat_; };
+   bool operator<(const GMPRational& rhs) const { return rat_ < rhs.rat_; };
+   bool operator>(const GMPRational& rhs) const { return rat_ > rhs.rat_;  };
+
+   //=============================================================================
    static GMPRational zero() { return GMPRational(0); }
    bool isZero() const { return rat_ == 0; }
 

@@ -35,6 +35,12 @@ public:
    bool operator!=(const CASRational& rhs) const { return !(*this == rhs); };
 
    //=============================================================================
+   bool operator<=(const CASRational&) const;
+   bool operator>=(const CASRational&) const;
+   bool operator<(const CASRational& rhs) const { return !(*this >= rhs); };
+   bool operator>(const CASRational& rhs) const { return !(*this <= rhs);  };
+
+   //=============================================================================
    static CASRational zero() { return CASRational(0); }
    bool isZero() const { return num_ == 0; }
 

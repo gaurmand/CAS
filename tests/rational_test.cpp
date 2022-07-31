@@ -138,3 +138,23 @@ TEST(rationalTest, IntegerConversion)
    EXPECT_EQ(Rational(1).toInteger(), Integer(1));
    EXPECT_THROW(Rational(1, 2).toInteger(), std::runtime_error);
 }
+
+//=============================================================================
+TEST(rationalTest, Comparison) 
+{
+   EXPECT_TRUE(Rational(1,2) >= Rational(0));
+   EXPECT_TRUE(Rational(1,2) >= Rational(1,2));
+   EXPECT_FALSE(Rational(1,2) >= Rational(2));
+
+   EXPECT_TRUE(Rational(2,5) > Rational(-1,5));
+   EXPECT_FALSE(Rational(2,5) > Rational(2,5));
+   EXPECT_FALSE(Rational(2,5) > Rational(5,3));
+
+   EXPECT_TRUE(Rational(-2,5) <= Rational(4,7));
+   EXPECT_TRUE(Rational(-2,5) <= Rational(-2,5));
+   EXPECT_FALSE(Rational(-2,5) <= Rational(-3,5));
+
+   EXPECT_TRUE(Rational(-5) < Rational(-3,10));
+   EXPECT_FALSE(Rational(-5) < Rational(-5));
+   EXPECT_FALSE(Rational(-5) < Rational(-11,2));
+}

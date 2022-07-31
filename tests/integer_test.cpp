@@ -288,3 +288,23 @@ TEST(integerTest, Unity)
    EXPECT_EQ(Integer(5) * Integer::unity(), Integer(5));
    EXPECT_EQ(Integer::unity() * Integer(5), Integer(5));
 }
+
+//=============================================================================
+TEST(integerTest, Comparison) 
+{
+   EXPECT_TRUE(Integer(1) >= Integer(0));
+   EXPECT_TRUE(Integer(1) >= Integer(1));
+   EXPECT_FALSE(Integer(1) >= Integer(2));
+
+   EXPECT_TRUE(Integer(2) > Integer(-1));
+   EXPECT_FALSE(Integer(2) > Integer(2));
+   EXPECT_FALSE(Integer(2) > Integer(5));
+
+   EXPECT_TRUE(Integer(-2) <= Integer(4));
+   EXPECT_TRUE(Integer(-2) <= Integer(-2));
+   EXPECT_FALSE(Integer(-2) <= Integer(-3));
+
+   EXPECT_TRUE(Integer(-5) < Integer(-3));
+   EXPECT_FALSE(Integer(-5) < Integer(-5));
+   EXPECT_FALSE(Integer(-5) < Integer(-10));
+}

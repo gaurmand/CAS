@@ -69,6 +69,12 @@ public:
    bool operator!=(const Integer& rhs) const { return !(*this == rhs); };
 
    //=============================================================================
+   bool operator<=(const Integer& rhs) const { return int_ <= rhs.int_; };
+   bool operator>=(const Integer& rhs) const { return int_ >= rhs.int_; };
+   bool operator<(const Integer& rhs) const { return int_ < rhs.int_; };
+   bool operator>(const Integer& rhs) const { return int_ > rhs.int_;  };
+
+   //=============================================================================
    static Integer zero() { return 0; }
    bool isZero() const { return int_ == 0; }
 
@@ -82,7 +88,6 @@ public:
    //=============================================================================
    friend std::ostream& operator<<(std::ostream&, const Integer&);
    friend class GMPRational;
-   friend class CASRational;
 
 private:
    //=============================================================================
