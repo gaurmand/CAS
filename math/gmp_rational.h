@@ -44,6 +44,10 @@ public:
    bool isUnity() const { return rat_ == 1; }
 
    //=============================================================================
+   bool isInteger() const { return rat_.get_den() == 1; }
+   Integer toInteger() const;
+
+   //=============================================================================
    friend std::ostream& operator<<(std::ostream&, const GMPRational&);
 
 private:

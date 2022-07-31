@@ -2,6 +2,7 @@
 #include "../math/gmp_rational.h"
 
 using Rational = CAS::GMPRational;
+using CAS::Integer;
 
 //=============================================================================
 TEST(rationalTest, DefaultConstructor) 
@@ -127,4 +128,11 @@ TEST(rationalTest, Unity)
    EXPECT_EQ(Rational(1), Rational::unity());
    EXPECT_TRUE(Rational::unity().isUnity());
    EXPECT_FALSE(Rational::zero().isUnity());
+}
+
+//=============================================================================
+TEST(rationalTest, IntegerConversion) 
+{
+   EXPECT_EQ(Rational(1).toInteger(), Integer(1));
+   EXPECT_THROW(Rational(1, 2).toInteger(), std::runtime_error);
 }

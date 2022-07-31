@@ -39,5 +39,15 @@ std::ostream& operator<<(std::ostream& os, const GMPRational& r)
    return os << r.rat_.get_str();
 }
 
+//=============================================================================
+Integer GMPRational::toInteger() const
+{
+   if (!isInteger())
+   {
+      throw std::runtime_error("Cannot convert GMPRational to Integer");
+   }
+
+   return Integer(rat_.get_num());
+}
 
 } // namespace CAS
