@@ -4,6 +4,7 @@
 
 using CAS::gcd;
 using CAS::Integer;
+using CAS::Rational;
 
 //=============================================================================
 TEST(gcdTest, Integer) 
@@ -38,4 +39,19 @@ TEST(gcdTest, Integer)
 
    // Large arguments
    EXPECT_EQ(gcd(Integer(1160718174), Integer(316258250)), Integer(1078));
+}
+
+//=============================================================================
+TEST(gcdTest, Rational) 
+{
+   // NOTE: Every nonzero rational is divisible by every other nonzero rational, 
+   // and also all nonzero rationals are associates. That's why gcd should always 
+   // return 1 or 0.
+
+   EXPECT_EQ(gcd(Rational(0), Rational(0)), Rational(0));
+   EXPECT_EQ(gcd(Rational(4,3), Rational(0)), Rational(1));
+   EXPECT_EQ(gcd(Rational(0), Rational(-4,3)), Rational(1));
+
+   EXPECT_EQ(gcd(Rational(24,5), Rational(6,5)), Rational(1));
+   EXPECT_EQ(gcd(Rational(-6,5), Rational(24,5)), Rational(1));
 }

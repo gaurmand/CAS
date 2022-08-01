@@ -2,6 +2,7 @@
 #define CAS_INTEGER_MOD_H
 
 #include "integer.h"
+#include <iostream>
 
 namespace CAS
 {
