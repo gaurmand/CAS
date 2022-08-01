@@ -25,6 +25,17 @@ target_link_libraries(
 )
 
 add_executable(
+   poly_test
+   polynomial_test/construction.cpp
+)
+
+target_link_libraries(
+   poly_test
+   GTest::gtest_main
+   "math"
+)
+
+add_executable(
    alg_test
    algorithm_test/abs_test.cpp
    algorithm_test/gcd_test.cpp
@@ -35,7 +46,6 @@ target_link_libraries(
    GTest::gtest_main
    "math"
 )
-
 
 gtest_discover_tests(mpz_test)
 gtest_discover_tests(ring_test)

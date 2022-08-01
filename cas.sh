@@ -17,6 +17,7 @@ test()
    ./$TEST_DIR/mpz_test
    ./$TEST_DIR/ring_test
    ./$TEST_DIR/alg_test
+   ./$TEST_DIR/poly_test
 }
 
 test2()

@@ -6,6 +6,7 @@
 #include "ring/quadratic_integer.h"
 #include "ring/gmp_rational.h"
 #include "ring/cas_rational.h"
+#include "polynomial/polynomial.h"
 
 namespace CAS
 {
