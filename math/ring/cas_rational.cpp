@@ -45,6 +45,53 @@ CASRational& CASRational::operator*=(const CASRational& rhs)
 }
 
 //=============================================================================
+CASRational& CASRational::invert()
+{ 
+   if (isZero())
+   {
+      throw std::domain_error("The inverse of 0 is undefined");
+   }
+
+   num_.swap(denom_);
+
+   // Only need partial canonicalize (ensure denom is positive)
+   if (denom_ < 0)
+   {
+      denom_ = -denom_;
+      num_ = -num_;
+   }
+
+   return *this;
+}
+
+//=============================================================================
+CASRational& CASRational::operator%=(const CASRational& rhs)
+{
+   if (rhs.isZero())
+   {
+      throw std::domain_error("The inverse of 0 is undefined");
+   }
+
+   num_ = 0;
+   denom_ = 1;
+   return *this;
+}
+
+//=============================================================================
+CASRational& CASRational::operator/=(const CASRational& rhs)
+{
+   if (rhs.isZero())
+   {
+      throw std::domain_error("The inverse of 0 is undefined");
+   }
+
+   num_ *= rhs.denom_;
+   denom_ *= rhs.num_;
+   canonicalize();
+   return *this;
+}
+
+//=============================================================================
 bool CASRational::operator<=(const CASRational& rhs) const
 {
    return (num_*rhs.denom_) <= (denom_*rhs.num_);

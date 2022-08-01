@@ -34,6 +34,42 @@ GMPRational& GMPRational::operator*=(const GMPRational& rhs)
 }
 
 //=============================================================================
+GMPRational& GMPRational::invert()
+{
+   if (isZero())
+   {
+      throw std::domain_error("The inverse of 0 is undefined");
+   }
+   
+   mpq_inv(rat_.get_mpq_t(), rat_.get_mpq_t());
+   return *this;
+}
+
+//=============================================================================
+GMPRational& GMPRational::operator%=(const GMPRational& rhs)
+{
+   if (rhs.isZero())
+   {
+      throw std::domain_error("The inverse of 0 is undefined");
+   }
+
+   rat_ = 0;
+   return *this;
+}
+
+//=============================================================================
+GMPRational& GMPRational::operator/=(const GMPRational& rhs)
+{
+   if (rhs.isZero())
+   {
+      throw std::domain_error("The inverse of 0 is undefined");
+   }
+
+   rat_ /= rhs.rat_;
+   return *this;
+}
+
+//=============================================================================
 std::ostream& operator<<(std::ostream& os, const GMPRational& r)
 {
    return os << r.rat_.get_str();

@@ -116,6 +116,41 @@ TEST(rationalTest, Multiplication)
 }
 
 //=============================================================================
+TEST(rationalTest, Inverse) 
+{
+   EXPECT_EQ(Rational(1).inverse(), Rational(1));
+   EXPECT_EQ(Rational(2).inverse(), Rational(1,2));
+   EXPECT_EQ(Rational(-1,2).inverse(), Rational(-2));
+   EXPECT_EQ(Rational(13,7).inverse().inverse(), Rational(13,7));
+
+   EXPECT_THROW(Rational(0).inverse(), std::domain_error);
+}
+
+//=============================================================================
+TEST(rationalTest, Division) 
+{
+   // X / Y
+   EXPECT_EQ(Rational(1, 2) / Rational(1, 4), Rational(2));
+   EXPECT_EQ(Rational(-11, 7) / Rational(12, 7), Rational(-11, 12));
+   EXPECT_EQ(Rational(-1, 9) / Rational(-1, 3), Rational(1,3));
+
+   // X / Y = 1
+   EXPECT_EQ(Rational(1, 5) / Rational(1, 5), Rational(1));
+   EXPECT_EQ(Rational(-19, 43) / Rational(19, 43), Rational(-1));
+
+   // 0 / X
+   EXPECT_EQ(Rational(0) / Rational(1, 5), Rational(0));
+
+   // X / 0
+   EXPECT_THROW(Rational(1,5) / Rational(0), std::domain_error);
+
+   // X % Y
+   EXPECT_EQ(Rational(0) % Rational(1, 4), Rational(0));
+   EXPECT_EQ(Rational(98, 97) % Rational(-1, 4), Rational(0));
+   EXPECT_THROW(Rational(1,5) % Rational(0), std::domain_error);
+}
+
+//=============================================================================
 TEST(rationalTest, Zero) 
 {
    EXPECT_EQ(Rational(0), Rational::zero());

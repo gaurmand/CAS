@@ -32,6 +32,16 @@ public:
    GMPRational operator*(const GMPRational& rhs) const { return GMPRational(*this) *= rhs;}
 
    //=============================================================================
+   GMPRational& invert();
+   GMPRational inverse() const { return GMPRational(*this).invert(); }
+
+   //=============================================================================
+   GMPRational& operator%=(const GMPRational&);
+   GMPRational operator%(const GMPRational& rhs) const { return GMPRational(*this) %= rhs; };
+   GMPRational& operator/=(const GMPRational&);
+   GMPRational operator/(const GMPRational& rhs) const { return GMPRational(*this) /= rhs; };
+   
+   //=============================================================================
    bool operator==(const GMPRational& rhs) const { return rat_ == rhs.rat_; };
    bool operator!=(const GMPRational& rhs) const { return !(*this == rhs); };
 

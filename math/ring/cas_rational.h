@@ -31,6 +31,16 @@ public:
    CASRational operator*(const CASRational& rhs) const { return CASRational(*this) *= rhs;}
 
    //=============================================================================
+   CASRational& invert();
+   CASRational inverse() const { return CASRational(*this).invert(); }
+
+   //=============================================================================
+   CASRational& operator%=(const CASRational&);
+   CASRational operator%(const CASRational& rhs) const { return CASRational(*this) %= rhs; };
+   CASRational& operator/=(const CASRational&);
+   CASRational operator/(const CASRational& rhs) const { return CASRational(*this) /= rhs; };
+
+   //=============================================================================
    bool operator==(const CASRational& rhs) const { return num_ == rhs.num_ && denom_ == rhs.denom_; };
    bool operator!=(const CASRational& rhs) const { return !(*this == rhs); };
 

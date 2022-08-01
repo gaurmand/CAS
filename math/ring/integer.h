@@ -83,7 +83,7 @@ public:
    bool isUnity() const { return int_ == 1; }
 
    //=============================================================================
-   Integer gcd(const Integer& i) { return Integer(::gcd(int_, i.int_)); }
+   void swap(Integer& o) { int_.swap(o.int_); };
 
    //=============================================================================
    friend std::ostream& operator<<(std::ostream&, const Integer&);
