@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "../math/ring.h"
-#include "../math/algorithm.h"
+#include "../../math/ring.h"
+#include "../../math/algorithm.h"
 
 using CAS::gcd;
 using CAS::Integer;

@@ -1,6 +1,6 @@
 add_executable(
    mpz_test
-   mpz_test.cpp
+   gmp_test/mpz_test.cpp
 )
 
 target_link_libraries(
@@ -12,10 +12,10 @@ target_link_libraries(
 
 add_executable(
    ring_test
-   integer_test.cpp
-   quadratic_integer_test.cpp
-   integer_mod_test.cpp
-   rational_test.cpp
+   ring_test/integer_test.cpp
+   ring_test/quadratic_integer_test.cpp
+   ring_test/integer_mod_test.cpp
+   ring_test/rational_test.cpp
 )
 
 target_link_libraries(
@@ -26,8 +26,8 @@ target_link_libraries(
 
 add_executable(
    alg_test
-   abs_test.cpp
-   gcd_test.cpp
+   algorithm_test/abs_test.cpp
+   algorithm_test/gcd_test.cpp
 )
 
 target_link_libraries(
