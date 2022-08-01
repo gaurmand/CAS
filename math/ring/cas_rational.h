@@ -68,8 +68,6 @@ private:
    Integer denom_ = 1;
 };
 
-using Rational = CASRational;
-
 } // namespace CAS
 
 #endif

@@ -27,6 +27,7 @@ target_link_libraries(
 add_executable(
    alg_test
    abs_test.cpp
+   gcd_test.cpp
 )
 
 target_link_libraries(

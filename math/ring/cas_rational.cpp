@@ -1,4 +1,5 @@
 #include "cas_rational.h"
+#include "../algorithm/common.h"
 #include <iostream>
 
 namespace CAS
@@ -92,7 +93,7 @@ void CASRational::canonicalize()
    // Ensure num and denom are coprime (i.e. do not share any common factors)
    if (denom_ != 1)
    {
-      const Integer g = num_.gcd(denom_);
+      const Integer g = gcd(num_, denom_);
       num_ /= g;
       denom_ /= g;
    }

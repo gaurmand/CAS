@@ -7,4 +7,9 @@
 #include "ring/gmp_rational.h"
 #include "ring/cas_rational.h"
 
+namespace CAS
+{
+   using Rational = CASRational;
+}
+
 #endif
