@@ -36,6 +36,10 @@ public:
    Integer degree() const { return terms_.back().exp(); }
 
    //=============================================================================
+   bool operator==(const Polynomial& rhs) const { return terms_ == rhs.terms_; };
+   bool operator!=(const Polynomial& rhs) const { return !(*this == rhs); };
+
+   //=============================================================================
    friend std::ostream& operator<<(std::ostream& os, const Polynomial& p)
    {
       for (auto it = p.terms_.begin(); it != p.terms_.end(); it++)
