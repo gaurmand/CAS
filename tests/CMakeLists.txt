@@ -26,8 +26,9 @@ target_link_libraries(
 
 add_executable(
    poly_test
-   polynomial_test/ctr_test.cpp
    polynomial_test/term_test.cpp
+   polynomial_test/ctr_test.cpp
+   polynomial_test/get_terms_test.cpp
 )
 
 target_link_libraries(
