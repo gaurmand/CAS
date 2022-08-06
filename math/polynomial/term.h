@@ -36,6 +36,14 @@ public:
    bool operator!=(const Term& rhs) const { return !(*this == rhs); };
 
    //=============================================================================
+   static Term zero() { return Term(); }
+   bool isZero() const { return coeff_ == R::zero() && exp_ == 0; }
+
+   //=============================================================================
+   static Term unity() { return R::unity(); }
+   bool isUnity() const { return coeff_ == R::unity() && exp_ == 0; }
+
+   //=============================================================================
    friend std::ostream& operator<<(std::ostream& os, const Term& t)
    {
       return os << t.coeff_ << "x^" << t.exp_;

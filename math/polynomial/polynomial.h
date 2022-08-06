@@ -36,6 +36,14 @@ public:
    Integer degree() const { return terms_.back().exp(); }
 
    //=============================================================================
+   static Polynomial zero() { return Polynomial(); }
+   bool isZero() const { return numTerms() == 1 && lt().isZero(); }
+
+   //=============================================================================
+   static Polynomial unity() { return Polynomial({Term<R>::unity()}); }
+   bool isUnity() const { return numTerms() == 1 && lt().isUnity(); }
+
+   //=============================================================================
    bool operator==(const Polynomial& rhs) const { return terms_ == rhs.terms_; };
    bool operator!=(const Polynomial& rhs) const { return !(*this == rhs); };
 
