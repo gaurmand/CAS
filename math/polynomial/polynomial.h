@@ -17,12 +17,16 @@ public:
    //=============================================================================
    Polynomial() = default;
    Polynomial(const std::vector<Term<R>>& terms) : terms_(terms) { canonicalize(); }
-
-   //=============================================================================
-   Term<R> lt() const { return terms_.back(); }
+   Polynomial(std::initializer_list<Term<R>> terms) : terms_(terms) { canonicalize(); }
 
    //=============================================================================
    Term<R> term(size_t i) const { return terms_.at(i); }
+
+   //=============================================================================
+   size_t numTerms() const { return terms_.size(); }
+
+   //=============================================================================
+   Term<R> lt() const { return terms_.back(); }
 
    //=============================================================================
    R lc() const { return terms_.back().coeff(); }
@@ -54,6 +58,7 @@ private:
    // + Each term has an exponent >= 0
    // + The zero polynomial is represented by the monomial 0*x^0
    void canonicalize();
+   void removeZeroTerms();
 
    //=============================================================================
    std::vector<Term<R>> terms_ = {Term<R>()};
@@ -102,7 +107,7 @@ void Polynomial<R>::canonicalize()
    }
 
    // b) Remove extra terms
-   auto last = std::unique(
+   const auto last = std::unique(
       terms_.begin(), 
       terms_.end(), 
       [](const Term<R>& l, const Term<R>& r) { return l.exp() == r.exp();}
@@ -110,7 +115,15 @@ void Polynomial<R>::canonicalize()
    terms_.erase(last, terms_.end());
 
    // Remove terms with 0 coefficients
-   last = std::remove_if(
+   removeZeroTerms();
+}
+
+//=============================================================================
+template <typename R>
+void Polynomial<R>::removeZeroTerms()
+{
+   // Remove 0 terms
+   const auto last = std::remove_if(
       terms_.begin(), 
       terms_.end(), 
       [](const Term<R>& t) { return t.coeff() == R::zero();}
