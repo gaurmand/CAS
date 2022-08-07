@@ -32,6 +32,9 @@ public:
    Term operator+(const Term& rhs) { return Term(*this) += rhs; }
 
    //=============================================================================
+   Term operator-() { return Term(-coeff_, exp_); }
+
+   //=============================================================================
    bool operator==(const Term& rhs) const { return exp_ == rhs.exp_ && coeff_ == rhs.coeff_; };
    bool operator!=(const Term& rhs) const { return !(*this == rhs); };
 

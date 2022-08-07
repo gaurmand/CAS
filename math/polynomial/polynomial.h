@@ -92,6 +92,17 @@ public:
    Polynomial operator+(const Polynomial& rhs) { return Polynomial(*this) += rhs; }
 
    //=============================================================================
+   Polynomial operator-() 
+   {
+      Polynomial copy(*this);
+      for (auto& term: copy.terms_)
+      {
+         term = -term;
+      }
+      return copy;
+   }
+
+   //=============================================================================
    static Polynomial zero() { return Polynomial(); }
    bool isZero() const { return numTerms() == 1 && lt().isZero(); }
 
