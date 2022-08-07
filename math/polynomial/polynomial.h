@@ -94,18 +94,18 @@ public:
    //=============================================================================
    Polynomial operator-() 
    {
-      Polynomial copy(*this);
-      for (auto& term: copy.terms_)
+      Polynomial res(*this);
+      for (auto& term: res.terms_)
       {
          term = -term;
       }
-      return copy;
+      return res;
    }
 
    //=============================================================================
-   Polynomial& operator-=(const Term<R>& term)
+   Polynomial& operator-=(const Term<R>& rhs)
    {
-      return *this += (-term);
+      return *this += (-rhs);
    }
    Polynomial operator-(const Term<R>& rhs) const { return Polynomial(*this) -= rhs; }
 
@@ -119,6 +119,45 @@ public:
       return *this;
    }
    Polynomial operator-(const Polynomial& rhs) const { return Polynomial(*this) -= rhs; }
+
+   //=============================================================================
+   Polynomial& operator*=(const Term<R>& rhs)
+   {
+      // Mutliply zero
+      if (rhs.isZero())
+      {
+         terms_.assign({Term<R>()});
+         return *this;
+      }
+      if(isZero())
+      {
+         return *this;
+      }
+
+      for (auto& term: terms_)
+      {
+         term *= rhs;
+
+      }
+
+      removeZeroTerms();
+      ensureCanoncialZero();
+      return *this;
+   }
+   Polynomial operator*(const Term<R>& rhs) const { return Polynomial(*this) *= rhs; }
+
+   //=============================================================================
+   Polynomial& operator*=(const Polynomial& rhs)
+   {
+      Polynomial res;
+      for (auto& term: rhs.terms_)
+      {
+         res += (*this * term);
+      }
+      terms_.assign(res.terms_.begin(), res.terms_.end());
+      return *this;
+   }
+   Polynomial operator*(const Polynomial& rhs) const { return Polynomial(*this) *= rhs; }
 
    //=============================================================================
    static Polynomial zero() { return Polynomial(); }

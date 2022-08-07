@@ -34,6 +34,7 @@ add_executable(
    polynomial_test/add_test.cpp
    polynomial_test/negation_test.cpp
    polynomial_test/subtract_test.cpp
+   polynomial_test/multiplication_test.cpp
 )
 
 target_link_libraries(

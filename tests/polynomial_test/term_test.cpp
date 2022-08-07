@@ -50,3 +50,12 @@ TEST(termTest, AdditionTest)
    EXPECT_THROW(Term(GaussianInteger(1,1),4) + Term(GaussianInteger(2,2),3), std::invalid_argument);
    EXPECT_THROW(Term(Rational(1,2),5) + Term(Rational(2,2),1), std::invalid_argument);
 }
+
+//=============================================================================
+TEST(termTest, MultiplicationTest) 
+{  
+   EXPECT_EQ(Term<Rational>() * Term<Rational>(), Term<Rational>());
+   EXPECT_EQ(Term(GaussianInteger(1,-1),9) * Term<GaussianInteger>(), Term(GaussianInteger(0),9));
+   EXPECT_EQ(Term(Integer(2),2) * Term(Integer(3),3), Term(Integer(6),5));
+   EXPECT_EQ(Term(IntegerMod<7>(6),2) * Term(IntegerMod<7>(4),1), Term(IntegerMod<7>(3),3));
+}
