@@ -36,6 +36,62 @@ public:
    Integer degree() const { return terms_.back().exp(); }
 
    //=============================================================================
+   Polynomial& operator+=(const Term<R>& term)
+   {
+      // Adding zero or adding to zero
+      if (term.isZero())
+      {
+         return *this;
+      }
+      if(isZero())
+      {
+         terms_[0] = term;
+         return *this;
+      }
+
+      // No term with exponent => term.exponent -> append term
+      if (term.exp() > degree())
+      {
+         terms_.push_back(term);
+         return *this;
+      }
+
+      // Find first term with exponent => term.exponent
+      const auto comp = [](const Term<R>& l, const Term<R>& r) { return l.exp() < r.exp(); };
+      const auto res = std::lower_bound(terms_.begin(), terms_.end(), term, comp);
+      assert(res != terms_.end());
+
+      // Term with greater exponent found -> insert term
+      if (res->exp() != term.exp())
+      {
+         terms_.insert(res, term);
+      }
+      // Term with same exponent found -> sum terms
+      else
+      {
+         *res += term;
+         if (res->coeff() == R::zero())
+         {
+            terms_.erase(res);
+            ensureCanoncialZero();
+         }
+      }
+      return *this;
+   }
+   Polynomial operator+(const Term<R>& rhs) { return Polynomial(*this) += rhs; }
+
+   //=============================================================================
+   Polynomial& operator+=(const Polynomial& rhs)
+   {
+      for (const auto& term: rhs.terms_)
+      {
+         *this += term;
+      }
+      return *this;
+   }
+   Polynomial operator+(const Polynomial& rhs) { return Polynomial(*this) += rhs; }
+
+   //=============================================================================
    static Polynomial zero() { return Polynomial(); }
    bool isZero() const { return numTerms() == 1 && lt().isZero(); }
 
@@ -71,6 +127,7 @@ private:
    // + The zero polynomial is represented by the monomial 0*x^0
    void canonicalize();
    void removeZeroTerms();
+   void ensureCanoncialZero();
 
    //=============================================================================
    std::vector<Term<R>> terms_ = {Term<R>()};
@@ -126,23 +183,26 @@ void Polynomial<R>::canonicalize()
    );
    terms_.erase(last, terms_.end());
 
-   // Remove terms with 0 coefficients
    removeZeroTerms();
+   ensureCanoncialZero();
 }
 
 //=============================================================================
 template <typename R>
 void Polynomial<R>::removeZeroTerms()
 {
-   // Remove 0 terms
    const auto last = std::remove_if(
       terms_.begin(), 
       terms_.end(), 
       [](const Term<R>& t) { return t.coeff() == R::zero();}
    );
    terms_.erase(last, terms_.end());
+}
 
-   // Ensure the zero polynomial is represented by the monomial 0*x^0
+//=============================================================================
+template <typename R>
+void Polynomial<R>::ensureCanoncialZero()
+{
    if (terms_.size() == 0)
    {
       terms_.emplace_back();

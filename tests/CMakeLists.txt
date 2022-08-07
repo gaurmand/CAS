@@ -31,6 +31,7 @@ add_executable(
    polynomial_test/get_terms_test.cpp
    polynomial_test/equality_test.cpp
    polynomial_test/identity_test.cpp
+   polynomial_test/add_test.cpp
 )
 
 target_link_libraries(
