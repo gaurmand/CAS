@@ -29,10 +29,18 @@ public:
       coeff_ += rhs.coeff_; 
       return *this;
    }
-   Term operator+(const Term& rhs) { return Term(*this) += rhs; }
+   Term operator+(const Term& rhs) const { return Term(*this) += rhs; }
 
    //=============================================================================
-   Term operator-() { return Term(-coeff_, exp_); }
+   Term operator-() const { return Term(-coeff_, exp_); }
+
+   //=============================================================================
+   Term& operator-=(const Term& rhs) 
+   { 
+      coeff_ -= rhs.coeff_;
+      return *this;
+   }
+   Term operator-(const Term& rhs) const { return Term(*this) -= rhs; }
 
    //=============================================================================
    bool operator==(const Term& rhs) const { return exp_ == rhs.exp_ && coeff_ == rhs.coeff_; };

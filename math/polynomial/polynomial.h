@@ -78,7 +78,7 @@ public:
       }
       return *this;
    }
-   Polynomial operator+(const Term<R>& rhs) { return Polynomial(*this) += rhs; }
+   Polynomial operator+(const Term<R>& rhs) const { return Polynomial(*this) += rhs; }
 
    //=============================================================================
    Polynomial& operator+=(const Polynomial& rhs)
@@ -89,7 +89,7 @@ public:
       }
       return *this;
    }
-   Polynomial operator+(const Polynomial& rhs) { return Polynomial(*this) += rhs; }
+   Polynomial operator+(const Polynomial& rhs) const { return Polynomial(*this) += rhs; }
 
    //=============================================================================
    Polynomial operator-() 
@@ -101,6 +101,24 @@ public:
       }
       return copy;
    }
+
+   //=============================================================================
+   Polynomial& operator-=(const Term<R>& term)
+   {
+      return *this += (-term);
+   }
+   Polynomial operator-(const Term<R>& rhs) const { return Polynomial(*this) -= rhs; }
+
+   //=============================================================================
+   Polynomial& operator-=(const Polynomial& rhs) 
+   { 
+      for (const auto& term: rhs.terms_)
+      {
+         *this -= term;
+      }
+      return *this;
+   }
+   Polynomial operator-(const Polynomial& rhs) const { return Polynomial(*this) -= rhs; }
 
    //=============================================================================
    static Polynomial zero() { return Polynomial(); }

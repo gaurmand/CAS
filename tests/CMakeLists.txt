@@ -33,6 +33,7 @@ add_executable(
    polynomial_test/identity_test.cpp
    polynomial_test/add_test.cpp
    polynomial_test/negation_test.cpp
+   polynomial_test/subtract_test.cpp
 )
 
 target_link_libraries(
