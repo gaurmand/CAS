@@ -1,6 +1,2 @@
-# ignored dirs
 build/*
-.vscode/*
 
-# scons
-.sconsign.dblite
